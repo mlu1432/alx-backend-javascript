@@ -13,57 +13,56 @@ interface TeacherInterface {
 }
 
 // 3. Implement the Director class
-class Director implements DirectorInterface {
-    workFromHome(): string {
-        return "Working from home";
-    }
-    getCoffeeBreak(): string {
-        return "Getting a coffee break";
-    }
-    workDirectorTasks(): string {
-        return "Getting to director tasks";
-    }
+export class Director implements DirectorInterface {
+    workFromHome = (): string => 'Working from home';
+    getCoffeeBreak = (): string => 'Getting a coffee break';
+    workDirectorTasks = (): string => 'Getting to director tasks';
 }
 
 // 4. Implement the Teacher class
-class Teacher implements TeacherInterface {
-    workFromHome(): string {
-        return "Cannot work from home";
-    }
-    getCoffeeBreak(): string {
-        return "Cannot have a break";
-    }
-    workTeacherTasks(): string {
-        return "Getting to work";
-    }
+export class Teacher implements TeacherInterface {
+    workFromHome = (): string => 'Cannot work from home';
+    getCoffeeBreak = (): string => 'Cannot have a break';
+    workTeacherTasks = (): string => 'Getting to work';
 }
 
 // 5. Implement the createEmployee function
-function createEmployee(salary: number | string): Director | Teacher {
-    if (typeof salary === 'number' && salary < 500) {
-        return new Teacher();
-    } else {
-        return new Director();
-    }
+export const createEmployee = (salary: number | string): Teacher | Director => {
+    return Number(salary) < 500 ? new Teacher() : new Director();
 }
 
 // 6. Define the isDirector function (type predicate)
-function isDirector(employee: Director | Teacher): employee is Director {
+export function isDirector(employee: TeacherInterface | DirectorInterface): employee is Director {
     return (employee as Director).workDirectorTasks !== undefined;
 }
 
 // 7. Implement the executeWork function
-function executeWork(employee: Director | Teacher): void {
+export function executeWork(employee: DirectorInterface | TeacherInterface): string {
     if (isDirector(employee)) {
-        console.log(employee.workDirectorTasks());
+        return employee.workDirectorTasks();
     } else {
-        console.log(employee.workTeacherTasks());
+        return employee.workTeacherTasks();
     }
 }
 
-// 8. Example usage
+// 8. Define the Subjects string literal type
+type Subjects = "Math" | "History";
+
+// 9. Implement the teachClass function
+export function teachClass(todayClass: Subjects): string {
+    if (todayClass === "Math") {
+        return "Teaching Math";
+    } else if (todayClass === "History") {
+        return "Teaching History";
+    }
+}
+
+// 10. Example usage
+console.log(teachClass("Math"));
+console.log(teachClass("History"));
+
 const employee1 = createEmployee(200);
-executeWork(employee1);
+console.log(executeWork(employee1));
 
 const employee2 = createEmployee(1000);
-executeWork(employee2);
+console.log(executeWork(employee2));
