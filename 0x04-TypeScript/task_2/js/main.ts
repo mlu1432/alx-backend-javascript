@@ -47,7 +47,23 @@ function createEmployee(salary: number | string): Director | Teacher {
     }
 }
 
-// 6. Example usage
-console.log(createEmployee(200) instanceof Teacher);
-console.log(createEmployee(1000) instanceof Director);
-console.log(createEmployee('$500') instanceof Director); 
+// 6. Define the isDirector function (type predicate)
+function isDirector(employee: Director | Teacher): employee is Director {
+    return (employee as Director).workDirectorTasks !== undefined;
+}
+
+// 7. Implement the executeWork function
+function executeWork(employee: Director | Teacher): void {
+    if (isDirector(employee)) {
+        console.log(employee.workDirectorTasks());
+    } else {
+        console.log(employee.workTeacherTasks());
+    }
+}
+
+// 8. Example usage
+const employee1 = createEmployee(200);
+executeWork(employee1);
+
+const employee2 = createEmployee(1000);
+executeWork(employee2);
