@@ -28,10 +28,8 @@ module.exports = {
       'WithStatement',
     ],
   },
-  overrides:[
-    {
-      files: ['*.js'],
-      excludedFiles: 'babel.config.js',
-    }
-  ]
+  overrides:[{
+    files: ['*.js'],
+    excludedFiles: 'babel.config.js',
+  }]
 };

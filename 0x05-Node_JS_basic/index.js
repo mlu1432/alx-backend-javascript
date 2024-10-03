@@ -1,12 +1,6 @@
-// index.js
 const readCSV = require('./readCSV');
-const filePath = './database.csv';
 
-// Calling the readCSV function to parse the CSV file
-readCSV(filePath)
-  .then((data) => {
-    console.log('Parsed CSV Data:', data);
-  })
-  .catch((error) => {
-    console.error('Error reading CSV:', error);
-  });
+// Example usage of readCSV function
+readCSV('./database.csv')
+  .then(() => console.log('File processed successfully'))
+  .catch((err) => console.error('Error processing file:', err));
