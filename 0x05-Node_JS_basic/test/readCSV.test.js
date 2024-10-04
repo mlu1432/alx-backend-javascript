@@ -1,6 +1,6 @@
 const readCSV = require('../readCSV');
 
-describe('CSV Reader', () => {
+describe('cSV Reader', () => {
   it('should read and parse the CSV file correctly', async () => {
     expect.assertions(1);
     const filePath = './database.csv';

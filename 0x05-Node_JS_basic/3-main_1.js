@@ -9,4 +9,3 @@ countStudents('database.csv')
   });
 
 console.log('After!');
-

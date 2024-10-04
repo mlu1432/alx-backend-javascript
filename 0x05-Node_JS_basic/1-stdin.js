@@ -1,4 +1,4 @@
-/** 
+/**
  * This program prompts the user for their name and displays a welcome message.
  * It listens for the user's input and responds with a personalized message.
  * Upon program termination, it logs a closing message.
