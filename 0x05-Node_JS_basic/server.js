@@ -1,16 +1,10 @@
-// server
-const express = require('express');
-const readCSV = require('./readCSV');
+// server.js
+const app = require('./5-http');
 
-const app = express();
-
-// Use the readCSV function
-readCSV('database.csv').then((data) => {
-  app.get('/data', (req, res) => {
-    res.json(data);
-  });
-});
-
-app.listen(3000, () => {
-  console.log('Server running on port 3000');
+/**
+ * Start the server on port 1245.
+ * The server listens for incoming requests and processes them accordingly.
+ */
+app.listen(1245, () => {
+  console.log('Server is running on port 1245');
 });
